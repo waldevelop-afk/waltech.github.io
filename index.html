@@ -1,189 +1,1301 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zetasscore — Terminal</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perkenalan Diri | GitHub Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset dan Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-<style>
-* {
-  box-sizing: border-box;
-  font-family: Consolas, monospace;
-}
+        :root {
+            --primary-color: #24292e;
+            --secondary-color: #0366d6;
+            --accent-color: #28a745;
+            --light-color: #f6f8fa;
+            --dark-color: #1f2328;
+            --text-color: #24292e;
+            --text-light: #586069;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: radial-gradient(circle at top, #0b0f14, #020409);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #00ffcc;
-  overflow: hidden;
-  padding: 16px;
-}
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-color);
+            padding-bottom: 2rem;
+        }
 
-/* TERMINAL */
-.terminal {
-  width: 100%;
-  max-width: 420px;
-  background: rgba(5, 10, 15, 0.92);
-  border-radius: 14px;
-  box-shadow: 0 0 40px rgba(0, 255, 200, 0.35);
-  overflow: hidden;
-}
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
 
-.header {
-  background: #0c1220;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+        section {
+            padding: 4rem 0;
+        }
 
-.dots {
-  display: flex;
-  gap: 6px;
-}
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
 
-.dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-}
+        h1 {
+            font-size: 2.8rem;
+            line-height: 1.2;
+        }
 
-.red { background: #ff5f56; }
-.yellow { background: #ffbd2e; }
-.green { background: #27c93f; }
+        h2 {
+            font-size: 2.2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
 
-/* SOUND BUTTON */
-.sound-btn {
-  background: transparent;
-  border: 1px solid #00ffcc;
-  color: #00ffcc;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  cursor: pointer;
-}
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
 
-.sound-btn.active {
-  background: #00ffcc;
-  color: #000;
-}
+        h3 {
+            font-size: 1.5rem;
+        }
 
-.body {
-  padding: 18px;
-  font-size: 14px;
-}
+        p {
+            margin-bottom: 1.2rem;
+            color: var(--text-light);
+        }
 
-.line {
-  display: flex;
-  gap: 6px;
-}
+        a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            transition: var(--transition);
+        }
 
-.prompt {
-  color: #7fffd4;
-}
+        a:hover {
+            color: var(--accent-color);
+        }
 
-.cursor {
-  display: inline-block;
-  width: 8px;
-  background: #00ffcc;
-  animation: blink 1s infinite;
-}
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
 
-.output {
-  color: #fff;
-  margin-top: 8px;
-  text-shadow: 0 0 8px rgba(0,255,200,0.6);
-}
+        .btn:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+            color: white;
+        }
 
-@keyframes blink {
-  50% { opacity: 0; }
-}
-</style>
+        /* Header & Navigation */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-color) 100%);
+            color: white;
+            text-align: center;
+            padding: 6rem 0;
+        }
+
+        .hero h1 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            color: #c9d1d9;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--secondary-color);
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .skills {
+            margin-top: 2rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .skill-tag {
+            background-color: #e7f3ff;
+            color: var(--secondary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Projects Section */
+        .projects {
+            background-color: #f8f9fa;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #e7f3ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .footer-logo span {
+            color: var(--accent-color);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-content, .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            h1 {
+                font-size: 2.4rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem 0;
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: var(--transition);
+            }
+            
+            .nav-links.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+            
+            .nav-links li {
+                margin: 1rem 0;
+            }
+            
+            section {
+                padding: 3rem 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.7rem;
+            }
+            
+            .hero {
+                padding: 4rem 0;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">GitHub<span>Profile</span></a>
+                <div class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#about">Tentang Saya</a></li>
+                    <li><a href="#projects">Proyek</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-<div class="terminal">
-  <div class="header">
-    <div class="dots">
-      <div class="dot red"></div>
-      <div class="dot yellow"></div>
-      <div class="dot green"></div>
-    </div>
-    <button class="sound-btn" id="soundBtn">🔇 Sound</button>
-  </div>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <img src="https://avatars.githubusercontent.com/u/583231?v=4" alt="Foto Profil" class="profile-img">
+            <h1>Halo, Saya <span style="color: var(--accent-color)">zetasscore</span></h1>
+            <p>Saya seorang pengembang perangkat lunak dengan passion dalam menciptakan solusi digital yang inovatif. Saat ini fokus pada pengembangan web dan mobile applications.</p>
+            <a href="#projects" class="btn">Lihat Proyek Saya</a>
+        </div>
+    </section>
 
-  <div class="body" id="terminal">
-    <div class="line">
-      <span class="prompt">visitor@web:~$</span>
-      <span id="cmd"></span><span class="cursor"></span>
-    </div>
-  </div>
-</div>
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2>Tentang Saya</h2>
+            <div class="about-content">
+                <div>
+                    <p>Saya adalah seorang developer yang bersemangat dalam memecahkan masalah melalui kode. Saya memiliki pengalaman lebih dari 3 tahun dalam pengembangan aplikasi web menggunakan teknologi modern seperti React, Node.js, dan berbagai framework lainnya.</p>
+                    <p>Saya percaya bahwa teknologi yang baik adalah teknologi yang dapat membantu menyelesaikan masalah nyata dengan cara yang efisien dan mudah dipahami.</p>
+                    <p>Di waktu luang, saya senang berkontribusi ke proyek open source, menulis artikel teknis, dan terus belajar teknologi baru.</p>
+                    <div class="skills">
+                        <h3>Keterampilan Teknis</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">HTML/CSS</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">MySQL</span>
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">AWS</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3>Pengalaman</h3>
+                    <div style="margin-top: 1.5rem;">
+                        <div style="margin-bottom: 2rem;">
+                            <h4>Full Stack Developer</h4>
+                            <p style="color: var(--secondary-color); font-weight: 500;">Tech Solutions Inc. | 2021 - Sekarang</p>
+                            <p>Mengembangkan dan memelihara aplikasi web dengan React di frontend dan Node.js di backend. Bertanggung jawab atas integrasi API dan optimasi performa.</p>
+                        </div>
+                        <div>
+                            <h4>Web Developer</h4>
+                            <p style="color: var(--secondary-color); font-weight: 500;">Digital Agency XYZ | 2019 - 2021</p>
+                            <p>Membuat website responsif untuk berbagai klien menggunakan HTML, CSS, JavaScript, dan CMS seperti WordPress. Juga mengelola deployment dan maintenance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- AUDIO -->
-<audio id="bgm" loop>
-  <source src="backsound.mp3" type="audio/mpeg">
-</audio>
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2>Proyek Terbaru</h2>
+            <p>Berikut adalah beberapa proyek yang telah saya kerjakan:</p>
+            <div class="project-grid">
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="E-commerce Platform" class="project-img">
+                    <div class="project-content">
+                        <h3>E-commerce Platform</h3>
+                        <p>Platform e-commerce lengkap dengan sistem pembayaran, manajemen produk, dan dashboard admin.</p>
+                        <div class="project-links">
+                            <a href="#" class="btn"><i class="fab fa-github"></i> Kode</a>
+                            <a href="#" class="btn" style="background-color: var(--accent-color)">Demo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Task Management App" class="project-img">
+                    <div class="project-content">
+                        <h3>Task Management App</h3>
+                        <p>Aplikasi manajemen tugas dengan fitur kolaborasi tim, pelacakan progress, dan notifikasi real-time.</p>
+                        <div class="project-links">
+                            <a href="#" class="btn"><i class="fab fa-github"></i> Kode</a>
+                            <a href="#" class="btn" style="background-color: var(--accent-color)">Demo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Weather Dashboard" class="project-img">
+                    <div class="project-content">
+                        <h3>Weather Dashboard</h3>
+                        <p>Dashboard cuaca dengan prediksi 7 hari ke depan, peta interaktif, dan notifikasi cuaca ekstrem.</p>
+                        <div class="project-links">
+                            <a href="#" class="btn"><i class="fab fa-github"></i> Kode</a>
+                            <a href="#" class="btn" style="background-color: var(--accent-color)">Demo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<script>
-/* ===== TERMINAL EFFECT ===== */
-const command = "whoami";
-const output = "zetasscore";
-const cmdEl = document.getElementById("cmd");
-const terminal = document.getElementById("terminal");
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Hubungi Saya</h2>
+            <div class="contact-content">
+                <div>
+                    <p>Jika Anda tertarik untuk berkolaborasi atau sekedar ingin berdiskusi tentang teknologi, jangan ragu untuk menghubungi saya!</p>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4>Email</h4>
+                                <p>ihwalmaulana09@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Lokasi</h4>
+                                <p>Riau, Indonesia</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4>Telepon</h4>
+                                <p>+628988098238</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com" target="_blank" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3>Kirim Pesan</h3>
+                    <form id="contactForm" style="margin-top: 1.5rem;">
+                        <div style="margin-bottom: 1.5rem;">
+                            <label for="name" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Nama</label>
+                            <input type="text" id="name" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px;" required>
+                        </div>
+                        <div style="margin-bottom: 1.5rem;">
+                            <label for="email" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Email</label>
+                            <input type="email" id="email" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px;" required>
+                        </div>
+                        <div style="margin-bottom: 1.5rem;">
+                            <label for="message" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Pesan</label>
+                            <textarea id="message" rows="5" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px;" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Kirim Pesan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
-let i = 0;
-function typeCmd() {
-  if (i < command.length) {
-    cmdEl.textContent += command[i++];
-    setTimeout(typeCmd, 120);
-  } else {
-    setTimeout(() => {
-      const out = document.createElement("div");
-      out.className = "output";
-      out.textContent = output;
-      terminal.appendChild(out);
-    }, 500);
-  }
-}
-typeCmd();
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">GitHub<span>Profile</span></div>
+                <p>&copy; 2023 Zetasscore. Semua hak dilindungi.</p>
+                <p style="font-size: 0.9rem; color: #c9d1d9;">Dibuat dengan ❤️ untuk komunitas GitHub</p>
+            </div>
+        </div>
+    </footer>
 
-/* ===== AUDIO CONTROL ===== */
-const bgm = document.getElementById("bgm");
-const btn = document.getElementById("soundBtn");
+    <script>
+        // Toggle menu untuk mobile
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Tutup menu saat link diklik (untuk mobile)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Form submission handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Dalam implementasi nyata, di sini akan ada kode untuk mengirim data ke server
+            // Untuk contoh ini, kita hanya akan menampilkan alert
+            alert('Terima kasih! Pesan Anda telah dikirim. Saya akan membalas secepatnya.');
+            this.reset();
+        });
+        
+        // Smooth scrolling untuk anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySe<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perkenalan Diri | GitHub Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset dan Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-/* DETEKSI DESKTOP */
-const isDesktop = window.matchMedia("(pointer: fine)").matches;
+        :root {
+            --primary-color: #24292e;
+            --secondary-color: #0366d6;
+            --accent-color: #28a745;
+            --light-color: #f6f8fa;
+            --dark-color: #1f2328;
+            --text-color: #24292e;
+            --text-light: #586069;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
 
-/* AUTOPLAY KHUSUS DESKTOP */
-if (isDesktop) {
-  bgm.volume = 0.5;
-  bgm.play().then(() => {
-    btn.textContent = "🔊 Sound";
-    btn.classList.add("active");
-  }).catch(() => {
-    // kalau browser blokir, tunggu klik user
-  });
-}
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-color);
+            padding-bottom: 2rem;
+        }
 
-/* TOGGLE BUTTON */
-btn.addEventListener("click", () => {
-  if (bgm.paused) {
-    bgm.play();
-    btn.textContent = "🔊 Sound";
-    btn.classList.add("active");
-  } else {
-    bgm.pause();
-    btn.textContent = "🔇 Sound";
-    btn.classList.remove("active");
-  }
-});
-</script>
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
 
+        section {
+            padding: 4rem 0;
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            color: var(--text-light);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--accent-color);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+            color: white;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark-color) 100%);
+            color: white;
+            text-align: center;
+            padding: 6rem 0;
+        }
+
+        .hero h1 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            color: #c9d1d9;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--secondary-color);
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .skills {
+            margin-top: 2rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .skill-tag {
+            background-color: #e7f3ff;
+            color: var(--secondary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Projects Section */
+        .projects {
+            background-color: #f8f9fa;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #e7f3ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-5px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .footer-logo span {
+            color: var(--accent-color);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-content, .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            h1 {
+                font-size: 2.4rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem 0;
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: var(--transition);
+            }
+            
+            .nav-links.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+            
+            .nav-links li {
+                margin: 1rem 0;
+            }
+            
+            section {
+                padding: 3rem 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.7rem;
+            }
+            
+            .hero {
+                padding: 4rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">GitHub<span>Profile</span></a>
+                <div class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#about">Tentang Saya</a></li>
+                    <li><a href="#projects">Proyek</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <img src="https://avatars.githubusercontent.com/u/583231?v=4" alt="Foto Profil" class="profile-img">
+            <h1>Halo, Saya <span style="color: var(--accent-color)">Nama Anda</span></h1>
+            <p>Saya seorang pengembang perangkat lunak dengan passion dalam menciptakan solusi digital yang inovatif. Saat ini fokus pada pengembangan web dan mobile applications.</p>
+            <a href="#projects" class="btn">Lihat Proyek Saya</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2>Tentang Saya</h2>
+            <div class="about-content">
+                <div>
+                    <p>Saya adalah seorang developer yang bersemangat dalam memecahkan masalah melalui kode. Saya memiliki pengalaman lebih dari 3 tahun dalam pengembangan aplikasi web menggunakan teknologi modern seperti React, Node.js, dan berbagai framework lainnya.</p>
+                    <p>Saya percaya bahwa teknologi yang baik adalah teknologi yang dapat membantu menyelesaikan masalah nyata dengan cara yang efisien dan mudah dipahami.</p>
+                    <p>Di waktu luang, saya senang berkontribusi ke proyek open source, menulis artikel teknis, dan terus belajar teknologi baru.</p>
+                    <div class="skills">
+                        <h3>Keterampilan Teknis</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">HTML/CSS</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">MySQL</span>
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">AWS</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3>Pengalaman</h3>
+                    <div style="margin-top: 1.5rem;">
+                        <div style="margin-bottom: 2rem;">
+                            <h4>Full Stack Developer</h4>
+                            <p style="color: var(--secondary-color); font-weight: 500;">Tech Solutions Inc. | 2021 - Sekarang</p>
+                            <p>Mengembangkan dan memelihara aplikasi web dengan React di frontend dan Node.js di backend. Bertanggung jawab atas integrasi API dan optimasi performa.</p>
+                        </div>
+                        <div>
+                            <h4>Web Developer</h4>
+                            <p style="color: var(--secondary-color); font-weight: 500;">Digital Agency XYZ | 2019 - 2021</p>
+                            <p>Membuat website responsif untuk berbagai klien menggunakan HTML, CSS, JavaScript, dan CMS seperti WordPress. Juga mengelola deployment dan maintenance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2>Proyek Terbaru</h2>
+            <p>Berikut adalah beberapa proyek yang telah saya kerjakan:</p>
+            <div class="project-grid">
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="E-commerce Platform" class="project-img">
+                    <div class="project-content">
+                        <h3>E-commerce Platform</h3>
+                        <p>Platform e-commerce lengkap dengan sistem pembayaran, manajemen produk, dan dashboard admin.</p>
+                        <div class="project-links">
+                            <a href="#" class="btn"><i class="fab fa-github"></i> Kode</a>
+                            <a href="#" class="btn" style="background-color: var(--accent-color)">Demo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Task Management App" class="project-img">
+                    <div class="project-content">
+                        <h3>Task Management App</h3>
+                        <p>Aplikasi manajemen tugas dengan fitur kolaborasi tim, pelacakan progress, dan notifikasi real-time.</p>
+                        <div class="project-links">
+                            <a href="#" class="btn"><i class="fab fa-github"></i> Kode</a>
+                            <a href="#" class="btn" style="background-color: var(--accent-color)">Demo</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Weather Dashboard" class="project-img">
+                    <div class="project-content">
+                        <h3>Weather Dashboard</h3>
+                        <p>Dashboard cuaca dengan prediksi 7 hari ke depan, peta interaktif, dan notifikasi cuaca ekstrem.</p>
+                        <div class="project-links">
+                            <a href="#" class="btn"><i class="fab fa-github"></i> Kode</a>
+                            <a href="#" class="btn" style="background-color: var(--accent-color)">Demo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Hubungi Saya</h2>
+            <div class="contact-content">
+                <div>
+                    <p>Jika Anda tertarik untuk berkolaborasi atau sekedar ingin berdiskusi tentang teknologi, jangan ragu untuk menghubungi saya!</p>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4>Email</h4>
+                                <p>nama.anda@example.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Lokasi</h4>
+                                <p>Jakarta, Indonesia</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4>Telepon</h4>
+                                <p>+62 812 3456 7890</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com" target="_blank" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3>Kirim Pesan</h3>
+                    <form id="contactForm" style="margin-top: 1.5rem;">
+                        <div style="margin-bottom: 1.5rem;">
+                            <label for="name" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Nama</label>
+                            <input type="text" id="name" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px;" required>
+                        </div>
+                        <div style="margin-bottom: 1.5rem;">
+                            <label for="email" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Email</label>
+                            <input type="email" id="email" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px;" required>
+                        </div>
+                        <div style="margin-bottom: 1.5rem;">
+                            <label for="message" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Pesan</label>
+                            <textarea id="message" rows="5" style="width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px;" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Kirim Pesan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">GitHub<span>Profile</span></div>
+                <p>&copy; 2023 Nama Anda. Semua hak dilindungi.</p>
+                <p style="font-size: 0.9rem; color: #c9d1d9;">Dibuat dengan ❤️ untuk komunitas GitHub</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle menu untuk mobile
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Tutup menu saat link diklik (untuk mobile)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Form submission handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Dalam implementasi nyata, di sini akan ada kode untuk mengirim data ke server
+            // Untuk contoh ini, kita hanya akan menampilkan alert
+            alert('Terima kasih! Pesan Anda telah dikirim. Saya akan membalas secepatnya.');
+            this.reset();
+        });
+        
+        // Smooth scrolling untuk anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
-</html>
+</html>lector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+  </html>
